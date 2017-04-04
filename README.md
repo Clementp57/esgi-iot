@@ -52,3 +52,13 @@ Voir la vidéo morse.mov dans le dossier Vidéos
 * Branchement d'un potentiomètre sur entrée analogique (PWM)
 
 ![alt text](./Images/potentiometre.jpeg "Branchement Potentiomètre") 
+
+### Ecriture du programme
+
+* Produit en croix afin de transformer la valeur d'entrée (1024 valeurs possibles) sur 255 valeurs
+* On remaquer que la LED a une valeur seuil au dessus de laquelle l'intensité ne semble plus augmenter
+* L'ajout d'une seconde LED se fait simplement en inversant la valeur de la première (255 - val) 
+
+### Résultat
+
+![alt text](./Images/gif_potentiometre.gif "Branchement Potentiomètre") 
