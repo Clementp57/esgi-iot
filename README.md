@@ -51,4 +51,4 @@ Voir la vidéo morse.mov dans le dossier Vidéos
 * Branchement de deux leds en analogique
 * Branchement d'un potentiomètre sur entrée analogique (PWM)
 
-![alt text](./Images/potentiometre "Branchement Potentiomètre") 
+![alt text](./Images/potentiometre.jpeg "Branchement Potentiomètre") 
