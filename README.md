@@ -10,7 +10,7 @@
 
 ## Feux Tricolores
 
-### Réalisation du montage
+### Montage
 
 ![alt text](./Images/montage_feux.jpeg "Montage Feux Tricolores")
 
@@ -23,3 +23,32 @@
 ### Résultat
 
 ![alt text](./Images/gif_feux.gif "2 Feux tricolors qui fonctionnent ensembles")
+
+## Morse
+
+### Montage
+
+* Montage Simple avec une led et une résistance branchée sur un port digital
+
+### Ecriture du programme
+
+* Utilisation du Serial, permet les IO sur l'Arduino
+* Lecture d'une chaîne de caractères rentrée par l'utilisateur
+* Loop sur les caractères de cette chaîne puis appel, en fonction de la lettre de la bonne séquence (point/tiret)
+
+* Pour afficher une point on allume la led pendant 200ms
+* Pour afficher un tiret on allume la led pendant 500ms
+* Attention a bien laisser un délai après l'affichage d'un point ou d'un tiret pour bien différencier les lettres
+
+### Résultat
+
+Voir la vidéo morse.mov dans le dossier Vidéos
+
+## Potentiomètre
+
+### Montage 
+
+* Branchement de deux leds en analogique
+* Branchement d'un potentiomètre sur entrée analogique (PWM)
+
+![alt text](./Images/potentiometre "Branchement Potentiomètre") 
