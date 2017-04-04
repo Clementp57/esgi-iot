@@ -113,6 +113,44 @@ void loop() {
       point();
       point();
     break;
+    case 't':
+      tiret();
+     break;
+    case 'u':
+      point();
+      point();
+      tiret();
+     break;
+    case 'v':
+      point();
+      point();
+      point();
+      tiret();
+    break;
+    case 'w':
+      point();
+      tiret();
+      tiret();
+     break;
+    case 'x':
+      tiret();
+      point();
+      point();
+      tiret();
+    break;
+    case 'y':
+      tiret();
+      point();
+      tiret();
+      tiret();
+    break;
+    case 'z':
+      tiret();
+      tiret();
+      point();
+      point();
+    break;
+    
   }
   }
 }
@@ -121,11 +159,13 @@ void point() {
   digitalWrite(ledPin, HIGH);
   delay(200);
   digitalWrite(ledPin, LOW);
+  delay(100);
 }
 
 void tiret() {
   digitalWrite(ledPin, HIGH);
   delay(500);
   digitalWrite(ledPin, LOW);
+  delay(100);
 }
 
