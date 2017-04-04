@@ -14,6 +14,8 @@
 * Référencement du lien dans l'IDE et téléchargement de la configuration de la board
  (https://raw.githubusercontent.com/stm32duino/BoardManagerFiles/master/STM32/package_stm_index.json)
 
+--- 
+
 ### Feux Tricolores
 
 #### Montage
@@ -29,6 +31,8 @@
 #### Résultat
 
 ![alt text](./Images/gif_feux.gif "2 Feux tricolors qui fonctionnent ensembles")
+
+---
 
 ### Morse
 
@@ -50,6 +54,8 @@
 
 Voir la vidéo morse.mov dans le dossier Vidéos
 
+---
+
 ### Potentiomètre
 
 #### Montage 
@@ -69,6 +75,8 @@ Voir la vidéo morse.mov dans le dossier Vidéos
 
 ![alt text](./Images/gif_potentiometre.gif "Branchement Potentiomètre") 
 
+---
+
 ### Affichage du temps écoulé depuis le début du programme sur demande
 
 #### Installation de la lib pyserial
@@ -87,3 +95,5 @@ Voir la vidéo morse.mov dans le dossier Vidéos
 ### Résultat
 
 ![alt text](./Images/console_python.png "Console python arduino") 
+
+---
