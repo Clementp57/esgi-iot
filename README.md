@@ -62,3 +62,22 @@ Voir la vidéo morse.mov dans le dossier Vidéos
 ### Résultat
 
 ![alt text](./Images/gif_potentiometre.gif "Branchement Potentiomètre") 
+
+## Affichage du temps écoulé depuis le début du programme sur demande
+
+### Installation de la lib pyserial
+
+* Installation de la librairie python pyserial via pip
+* Repérage du port utilisé par l'Arduino
+
+## Ecriture du programme 
+
+* Récupération du temps écoulé grâce à la fonction millis()
+* Attente de l'entrée du chaine de caractères par l'utilisateur
+* Quand la chaîne est recue, affichage avec Serial du temps écoulé
+* Connexion en python sur le serial de l'Arduino avec le port récupéré plus tot
+* Print de la chaîne imprimée via le programme avec 'print(serial_port.readline())'
+
+## Résultat
+
+![alt text](./Images/console_python.png "Console python arduino") 
