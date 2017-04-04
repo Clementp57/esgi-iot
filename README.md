@@ -14,3 +14,12 @@
 
 ![alt text](./Images/montage_feux.jpeg "Montage Feux Tricolores")
 
+### Ecriture du programme
+
+* Références les pins des leds connectées
+* Dans la loop, allumer successivement les feux pour qu'il soient synchronisés
+* Attention, pendant qu'une feu est rouge l'autre doit passer à l'orange
+
+### Résultat
+
+![alt text](./Images/gif_feux.gif "2 Feux tricolors qui fonctionnent ensembles")
