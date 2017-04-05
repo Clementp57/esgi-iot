@@ -46,6 +46,7 @@ void number(){
     delay(1000);
   }
   clearRegisters();
+  writeRegisters();
 }
 
 
