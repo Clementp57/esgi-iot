@@ -1,29 +1,36 @@
-int pinInterup = 2;
+int SER_Pin = 8;
+int RCLK_Pin = 9;
+int SRCLK_Pin = 10;
+int buttonPin = 2;
 
-int pinSegmentA = 4;
-int pinSegmentB = 5;
-int pinSegmentC = 6;
-int pinSegmentD = 7;
-int pinSegmentE = 8;
-int pinSegmentF = 9;
-int pinSegmentG = 10;
-int pinSegmentDP = 11;
+#define number_of_74hc595 1
+#define numOfRegisterPins 8
 
-int valueStart = 9;
+boolean registers[numOfRegisterPins];
+
+boolean digits[10][7] = {
+  {HIGH,HIGH,HIGH,HIGH,HIGH,HIGH,LOW},
+  {LOW,HIGH,HIGH,LOW,LOW,LOW,LOW},
+  {HIGH,HIGH,LOW,HIGH,HIGH,LOW,HIGH},
+  {HIGH,HIGH,HIGH,HIGH,LOW,LOW,HIGH},
+  {LOW,HIGH,HIGH,LOW,LOW,HIGH,HIGH},
+  {HIGH,LOW,HIGH,HIGH,LOW,HIGH,HIGH},
+  {HIGH,LOW,HIGH,HIGH,HIGH,HIGH,HIGH},
+  {HIGH,HIGH,HIGH,LOW,LOW,LOW,LOW},
+  {HIGH,HIGH,HIGH,HIGH,HIGH,HIGH,HIGH},
+  {HIGH,HIGH,HIGH,HIGH,LOW,HIGH,HIGH}};
 
 void setup() {
 
-  pinMode(pinSegmentA, OUTPUT);
-  pinMode(pinSegmentB, OUTPUT);
-  pinMode(pinSegmentC, OUTPUT);
-  pinMode(pinSegmentD, OUTPUT);
-  pinMode(pinSegmentE, OUTPUT);
-  pinMode(pinSegmentF, OUTPUT);
-  pinMode(pinSegmentG, OUTPUT);
-  pinMode(pinSegmentDP, OUTPUT);
-  attachInterrupt(pinInterup, number, FALLING);
+  pinMode(SER_Pin, OUTPUT);
+  pinMode(RCLK_Pin, OUTPUT);
+  pinMode(SRCLK_Pin, OUTPUT);
+  
+  // reset all 74hc595 pins
+  clearRegisters();
+  writeRegisters();
 
-
+  attachInterrupt(buttonPin, number, FALLING);
 }
 
 void loop() {
@@ -31,113 +38,33 @@ void loop() {
 }
 
 void number(){
-
-  switch(valueStart){
-
-    case 9:
-      digitalWrite(pinSegmentA, HIGH);
-      digitalWrite(pinSegmentB, HIGH);
-      digitalWrite(pinSegmentC, HIGH);  
-      digitalWrite(pinSegmentD, HIGH);
-      digitalWrite(pinSegmentE, LOW);
-      digitalWrite(pinSegmentF, HIGH);
-      digitalWrite(pinSegmentG, HIGH);
-      digitalWrite(pinSegmentDP, LOW);
-      delay(500);
-    case 8:
-      digitalWrite(pinSegmentA, HIGH);
-      digitalWrite(pinSegmentB, HIGH);
-      digitalWrite(pinSegmentC, HIGH);  
-      digitalWrite(pinSegmentD, HIGH);
-      digitalWrite(pinSegmentE, HIGH);
-      digitalWrite(pinSegmentF, HIGH);
-      digitalWrite(pinSegmentG, HIGH);
-      digitalWrite(pinSegmentDP, LOW);
-      delay(500);
-    case 7:
-      digitalWrite(pinSegmentA, HIGH);
-      digitalWrite(pinSegmentB, HIGH);
-      digitalWrite(pinSegmentC, HIGH);  
-      digitalWrite(pinSegmentD, LOW);
-      digitalWrite(pinSegmentE, LOW);
-      digitalWrite(pinSegmentF, LOW);
-      digitalWrite(pinSegmentG, LOW);
-      digitalWrite(pinSegmentDP, LOW);
-      delay(500);
-    case 6:
-      digitalWrite(pinSegmentA, HIGH);
-      digitalWrite(pinSegmentB, LOW);
-      digitalWrite(pinSegmentC, HIGH);  
-      digitalWrite(pinSegmentD, HIGH);
-      digitalWrite(pinSegmentE, HIGH);
-      digitalWrite(pinSegmentF, HIGH);
-      digitalWrite(pinSegmentG, HIGH);
-      digitalWrite(pinSegmentDP, LOW);
-      delay(500);
-    case 5:
-      digitalWrite(pinSegmentA, HIGH);
-      digitalWrite(pinSegmentB, LOW);
-      digitalWrite(pinSegmentC, HIGH);  
-      digitalWrite(pinSegmentD, HIGH);
-      digitalWrite(pinSegmentE, LOW);
-      digitalWrite(pinSegmentF, HIGH);
-      digitalWrite(pinSegmentG, HIGH);
-      digitalWrite(pinSegmentDP, LOW);
-      delay(500);
-    case 4:
-      digitalWrite(pinSegmentA, LOW);
-      digitalWrite(pinSegmentB, HIGH);
-      digitalWrite(pinSegmentC, HIGH);  
-      digitalWrite(pinSegmentD, LOW);
-      digitalWrite(pinSegmentE, LOW);
-      digitalWrite(pinSegmentF, HIGH);
-      digitalWrite(pinSegmentG, HIGH);
-      digitalWrite(pinSegmentDP, HIGH);
-      delay(500);
-    case 3:
-      digitalWrite(pinSegmentA, HIGH);
-      digitalWrite(pinSegmentB, HIGH);
-      digitalWrite(pinSegmentC, HIGH);  
-      digitalWrite(pinSegmentD, HIGH);
-      digitalWrite(pinSegmentE, LOW);
-      digitalWrite(pinSegmentF, LOW);
-      digitalWrite(pinSegmentG, HIGH);
-      digitalWrite(pinSegmentDP, LOW);
-      delay(500);
-    case 2:
-      digitalWrite(pinSegmentA, HIGH);
-      digitalWrite(pinSegmentB, HIGH);
-      digitalWrite(pinSegmentC, LOW);  
-      digitalWrite(pinSegmentD, HIGH);
-      digitalWrite(pinSegmentE, HIGH);
-      digitalWrite(pinSegmentF, LOW);
-      digitalWrite(pinSegmentG, HIGH);
-      digitalWrite(pinSegmentDP, LOW);
-      delay(500);
-    case 1:
-      digitalWrite(pinSegmentA, LOW);
-      digitalWrite(pinSegmentB, HIGH);
-      digitalWrite(pinSegmentC, HIGH);  
-      digitalWrite(pinSegmentD, LOW);
-      digitalWrite(pinSegmentE, LOW);
-      digitalWrite(pinSegmentF, LOW);
-      digitalWrite(pinSegmentG, LOW);
-      digitalWrite(pinSegmentDP, LOW);
-      delay(500);
-    case 0:
-      digitalWrite(pinSegmentA, HIGH);
-      digitalWrite(pinSegmentB, HIGH);
-      digitalWrite(pinSegmentC, HIGH);  
-      digitalWrite(pinSegmentD, HIGH);
-      digitalWrite(pinSegmentE, HIGH);
-      digitalWrite(pinSegmentF, HIGH);
-      digitalWrite(pinSegmentG, LOW);
-      digitalWrite(pinSegmentDP, LOW);
-      delay(500);
-    
+  for(int j = 9;j>=0;j--) {
+    for(int i = 1;i<=7;i++) {
+      setRegisterPin(i, digits[j][i-1]);
+    }
+    writeRegisters();
+    delay(1000);
   }
-  
-  
-  
 }
 
+
+void clearRegisters() {
+  for(int i=numOfRegisterPins-1;i>=0;i--) {
+    registers[i] = LOW;
+  }
+}
+
+void writeRegisters() {
+  digitalWrite(RCLK_Pin, LOW);
+  for(int i=numOfRegisterPins-1;i>=0;i--) {
+    digitalWrite(SRCLK_Pin, LOW);
+    int val = registers[i];
+    digitalWrite(SER_Pin, val);
+    digitalWrite(SRCLK_Pin, HIGH);
+  }
+  digitalWrite(RCLK_Pin, HIGH);
+}
+
+void setRegisterPin(int index, int value) {
+  registers[index] = value;
+}
