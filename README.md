@@ -6,6 +6,7 @@
 2. [Morse](#morse)
 3. [Potentiomètre](#potentiomètre)
 4. [Temps écoulés](#affichage-du-temps-écoulé-depuis-le-début-du-programme-sur-demande)
+5. [Processing](#processing)
 
 ## Installation
 
@@ -84,7 +85,7 @@ Voir la vidéo morse.mov dans le dossier Vidéos
 * Installation de la librairie python pyserial via pip
 * Repérage du port utilisé par l'Arduino
 
-### Ecriture du programme 
+#### Ecriture du programme 
 
 * Récupération du temps écoulé grâce à la fonction millis()
 * Attente de l'entrée du chaine de caractères par l'utilisateur
@@ -92,8 +93,37 @@ Voir la vidéo morse.mov dans le dossier Vidéos
 * Connexion en python sur le serial de l'Arduino avec le port récupéré plus tot
 * Print de la chaîne imprimée via le programme avec 'print(serial_port.readline())'
 
-### Résultat
+#### Résultat
 
 ![alt text](./Images/console_python.png "Console python arduino") 
 
 ---
+
+### Processing
+
+#### Installation
+
+* Installation de l'IDE
+* Installation des lib Arduino et controlP5
+* Installation du firmware oldStandarFirmata : téléverser depuis l'ide Arduino le fichier Firmata des exemples (spécifique a la board)
+* Sur processing, modifier le port COM associé à l'objet Arduino pour qu'il match avec le port utilisé
+
+#### Résultat 
+
+* La LED clignote toute les secondes
+
+---
+
+### 7 segments
+
+#### Montage Simple
+
+![alt text](./Images/segments_simple.jpeg "6 segments montage simple")
+
+#### Programme décompte  
+
+* 
+
+#### Résultat
+
+![alt text](./Images/decompte.gif "6 segments montage simple")
