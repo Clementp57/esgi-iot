@@ -7,6 +7,7 @@
 3. [Potentiomètre](#potentiomètre)
 4. [Temps écoulés](#affichage-du-temps-écoulé-depuis-le-début-du-programme-sur-demande)
 5. [Processing](#processing)
+6. [7 segments](#7-segments)
 
 ## Installation
 
@@ -140,7 +141,10 @@ Voir la vidéo morse.mov dans le dossier Vidéos
 
 #### Programme lancement de dés
 
-* TODO: explain
+* On set les pins du registre
+* On clear le registre (0 sur toutes les pins)
+* On attache a l'interruption la fonction qui fait le random et allume les segments en fonction du tableau défini
+* On signal par la pin SRCLK que l'écriture dans le registre est finie
 
 #### Résultat
 
