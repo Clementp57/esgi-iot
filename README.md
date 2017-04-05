@@ -123,7 +123,8 @@ Voir la vidéo morse.mov dans le dossier Vidéos
 
 #### Programme décompte  
 
-* TODO: explain
+* On allume les segments branché sur les pins correspondante pour afficher chaque chiffre en passant la valeur a HIGH
+* On fait un delay entre chaque allumage des pins pour distinguer les chiffres
 
 #### Résultat
 
@@ -143,8 +144,9 @@ Voir la vidéo morse.mov dans le dossier Vidéos
 
 * On set les pins du registre
 * On clear le registre (0 sur toutes les pins)
-* On attache a l'interruption la fonction qui fait le random et allume les segments en fonction du tableau défini
-* On signal par la pin SRCLK que l'écriture dans le registre est finie
+* On attache a l'interruption (en FALLING) la fonction qui fait le random et allume les segments en fonction du tableau défini
+* Dans cette fonction, en fn du nombre random, on set a HIGH les valeurs subséquentes du registre  
+* On signale par la pin RCLK que l'écriture dans le registre est finie
 
 #### Résultat
 
