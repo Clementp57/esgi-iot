@@ -1,22 +1,23 @@
-int buttonPin = 3;
+int buttonPin = 2;
 int ledPin = 4;
-bool button = LOW;
+int state = LOW;
 
 void setup() {
-  pinMode(buttonPin, INPUT);
-  pinMode(ledPin, OUTPUT);
+  //pinMode(buttonPin, INPUT);
   Serial.begin(9600);
-  attachInterrupt(buttonPin, interrupt, CHANGE);
+  pinMode(ledPin, OUTPUT);
+  attachInterrupt(buttonPin, interrupt, RISING);
 }
 
 void loop() {
-  button = digitalRead(buttonPin);
-  //Serial.println(button);
-  digitalWrite(ledPin, button);
+  //int test = digitalRead(buttonPin);
+  //digitalWrite(ledPin, test);
+  //Serial.println(test);
 }
 
 void interrupt() {
   Serial.println("interrupting !");
   state = !state;
+  digitalWrite(ledPin, state);
 }
 
