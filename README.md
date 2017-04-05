@@ -118,12 +118,30 @@ Voir la vidéo morse.mov dans le dossier Vidéos
 
 #### Montage Simple
 
-![alt text](./Images/segments_simple.jpeg "6 segments montage simple")
+![alt text](./Images/segments_simple.jpeg "8 segments montage simple")
 
 #### Programme décompte  
 
-* 
+* TODO: explain
 
 #### Résultat
 
-![alt text](./Images/decompte.gif "6 segments montage simple")
+![alt text](./Images/decompte.gif "7 segments décompte")
+
+#### Montage avec 74HC595
+
+* Sans bouton
+
+![alt text](./Images/segments_registre_sans_bouton.jpeg "7 segments registre sans bouton")
+
+* Avec bouton
+
+![alt text](./Images/segments_registre_bouton.jpeg "7 segement registre bouton")
+
+#### Programme lancement de dés
+
+* TODO: explain
+
+#### Résultat
+
+![alt text](./Images/lancement_des.gif "Lancement d'un dé")
