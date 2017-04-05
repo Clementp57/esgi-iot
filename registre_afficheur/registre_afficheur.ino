@@ -13,8 +13,6 @@ void setup() {
   pinMode(SER_Pin, OUTPUT);
   pinMode(RCLK_Pin, OUTPUT);
   pinMode(SRCLK_Pin, OUTPUT);
-
-  pinMode(15, INPUT);
   
   // reset all 74hc595 pins
   clearRegisters();
@@ -22,13 +20,9 @@ void setup() {
 }
 
 void loop() {
-  //test
-  int test = digitalRead(15);
-  Serial.println(test);
-  
-  setRegisterPin(1, LOW);
+  setRegisterPin(1, HIGH);
   setRegisterPin(2, HIGH);
-  setRegisterPin(3, LOW);
+  setRegisterPin(3, HIGH);
   setRegisterPin(4, HIGH);
   setRegisterPin(5, HIGH);
   setRegisterPin(6, HIGH);
