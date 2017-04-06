@@ -6,6 +6,8 @@
 2. [Morse](#morse)
 3. [Potentiomètre](#potentiomètre)
 4. [Temps écoulés](#affichage-du-temps-écoulé-depuis-le-début-du-programme-sur-demande)
+5. [Processing](#processing)
+6. [7 segments](#7-segments)
 
 ## Installation
 
@@ -84,7 +86,7 @@ Voir la vidéo morse.mov dans le dossier Vidéos
 * Installation de la librairie python pyserial via pip
 * Repérage du port utilisé par l'Arduino
 
-### Ecriture du programme 
+#### Ecriture du programme 
 
 * Récupération du temps écoulé grâce à la fonction millis()
 * Attente de l'entrée du chaine de caractères par l'utilisateur
@@ -92,8 +94,60 @@ Voir la vidéo morse.mov dans le dossier Vidéos
 * Connexion en python sur le serial de l'Arduino avec le port récupéré plus tot
 * Print de la chaîne imprimée via le programme avec 'print(serial_port.readline())'
 
-### Résultat
+#### Résultat
 
 ![alt text](./Images/console_python.png "Console python arduino") 
 
 ---
+
+### Processing
+
+#### Installation
+
+* Installation de l'IDE
+* Installation des lib Arduino et controlP5
+* Installation du firmware oldStandarFirmata : téléverser depuis l'ide Arduino le fichier Firmata des exemples (spécifique a la board)
+* Sur processing, modifier le port COM associé à l'objet Arduino pour qu'il match avec le port utilisé
+
+#### Résultat 
+
+* La LED clignote toute les secondes
+
+---
+
+### 7 segments
+
+#### Montage Simple
+
+![alt text](./Images/segments_simple.jpeg "8 segments montage simple")
+
+#### Programme décompte  
+
+* On allume les segments branché sur les pins correspondante pour afficher chaque chiffre en passant la valeur a HIGH
+* On fait un delay entre chaque allumage des pins pour distinguer les chiffres
+
+#### Résultat
+
+![alt text](./Images/decompte.gif "7 segments décompte")
+
+#### Montage avec 74HC595
+
+* Sans bouton
+
+![alt text](./Images/segments_registre_sans_bouton.jpeg "7 segments registre sans bouton")
+
+* Avec bouton
+
+![alt text](./Images/segments_registre_bouton.jpeg "7 segement registre bouton")
+
+#### Programme lancement de dés
+
+* On set les pins du registre
+* On clear le registre (0 sur toutes les pins)
+* On attache a l'interruption (en FALLING) la fonction qui fait le random et allume les segments en fonction du tableau défini
+* Dans cette fonction, en fn du nombre random, on set a HIGH les valeurs subséquentes du registre  
+* On signale par la pin RCLK que l'écriture dans le registre est finie
+
+#### Résultat
+
+![alt text](./Images/lancement_des.gif "Lancement d'un dé")
