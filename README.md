@@ -151,3 +151,11 @@ Voir la vidéo morse.mov dans le dossier Vidéos
 #### Résultat
 
 ![alt text](./Images/lancement_des.gif "Lancement d'un dé")
+
+### Projet
+
+### Installation
+
+* Python
+* Pybluez
+* PyOBJC
