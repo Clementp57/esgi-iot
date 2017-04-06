@@ -11,6 +11,8 @@
  *	- 500 : Erreur interne du serveur
  */
 
+var moment = require('moment-timezone');
+
 module.exports = function(app) {
 	return function(req, res, next) {
 
@@ -20,7 +22,7 @@ module.exports = function(app) {
 
 		var value = 1;
 		var device = 'test';
-		var today = new Date();
+		var today = moment().tz('Europe/Paris').format(); 
 		if(typeof req.body.value !== 'undefined'){
 			value = req.body.value;
 		}

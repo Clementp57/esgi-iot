@@ -1,7 +1,7 @@
 /* REST DELETE
-Suprime une présence existante grâce à son identifiant
+Suprime toutes les présences
 
-route: DELETE /presences/{presence_id}
+route: DELETE /presences/
 
 Les codes HTTP :
 - 204 : Requête traitée avec succès mais pas d’information à renvoyer
@@ -12,7 +12,7 @@ OK
 
 module.exports = function(app) {
 	return function(req, res, next) {
-		
+
 		var Presence = app.models.Presence;
 		
 		Presence.remove({},function(err, result) {
