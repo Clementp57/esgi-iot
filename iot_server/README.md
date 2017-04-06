@@ -3,6 +3,10 @@
 ## Installer les libs
 
 ```
+npm install 
+
+ou
+
 npm install body-parser --save
 npm install mongoose --save
 npm install mongodb --save
