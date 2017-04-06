@@ -1,6 +1,6 @@
-#Mise en place du serveur
+# Mise en place du serveur
 
-##Installer les libs
+## Installer les libs
 
 ```
 npm install body-parser --save
