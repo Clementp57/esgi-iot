@@ -155,6 +155,8 @@ Voir la vidéo morse.mov dans le dossier Vidéos
 
 ### Projet
 
+Les scripts python et .ino se trouvent dans le dossier projet
+
 #### Installation
 
 * Python
