@@ -5,3 +5,7 @@ node_modules
 npm-debug.log
 .DS_Store
 /*.env
+
+*.xcuserstate
+
+iOS_PassageCount_Display/iOS_PassageCount_Display.xcworkspace/xcuserdata/damien.xcuserdatad/UserInterfaceState.xcuserstate
