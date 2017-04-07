@@ -2,7 +2,7 @@
 
 module.exports = {
 	port: 8080,
-//	db: 'mongodb://sylvain:esgi2016@ds055574.mlab.com:55574/smartlight',
-	db: 'mongodb://localhost:27017/esgi_iot',
+	db: 'mongodb://esgi:esgi2017@ds155150.mlab.com:55150/presence_iot',
+//	db: 'mongodb://localhost:27017/esgi_iot',
 	passwordAddOn: 'MASTOKEN'
 };

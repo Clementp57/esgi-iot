@@ -1,0 +1,9 @@
+platform :ios, '10.0'
+use_frameworks!
+
+target 'iOS_PassageCount_Display' do
+
+	pod 'Charts', '~> 3.0'
+	pod 'Alamofire', '~> 4.0'
+
+end

@@ -189,5 +189,3 @@ int setupBlueToothConnection()
     Serial.print("Setup complete\r\n\r\n");
     return 0;
 }
-
-

@@ -6,6 +6,9 @@ npm-debug.log
 .DS_Store
 /*.env
 
+# iOS
+*.xcuserstate
+
 # Android
 *.apk
 *.ap_
@@ -20,3 +23,4 @@ proguard/
 *.log
 .navigation/
 captures/
+>>>>>>> origin/master
