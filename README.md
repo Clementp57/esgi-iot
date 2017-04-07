@@ -203,6 +203,9 @@ Les scripts python et .ino se trouvent dans le dossier projet
 
 #### Application mobile
 
+![alt text](./Images/ios_app.png "App ios")
+![alt text](./Images/android_app.png "App android")
+
 #### Difficulté rencontrés
 
 * Pour faire le setup du HC-05, il faut passer par le Serial3 par ex
