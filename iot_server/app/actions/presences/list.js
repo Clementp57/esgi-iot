@@ -1,7 +1,7 @@
 /* REST GET
-Récupérer toutes les solutions lumineuses
+Récupérer toutes les présences
 
-route: GET /lights
+route: GET /presences
 
 Les codes HTTP :
 - 200 : Requête traitée avec succès
@@ -18,7 +18,7 @@ module.exports = function(app) {
 			if(err){
         	return res.status(500).json({success: false, error: 'Erreur interne du serveur'});
       	}
-		  
+
 		if(!presences){
 			return res.status(404).json({success: false, error: 'Liste de présences vide'});
 		}
