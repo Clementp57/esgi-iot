@@ -6,6 +6,21 @@ npm-debug.log
 .DS_Store
 /*.env
 
+# iOS
 *.xcuserstate
 
-iOS_PassageCount_Display/iOS_PassageCount_Display.xcworkspace/xcuserdata/damien.xcuserdatad/UserInterfaceState.xcuserstate
+# Android
+*.apk
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+.gradle/
+build/
+local.properties
+proguard/
+*.log
+.navigation/
+captures/
+>>>>>>> origin/master

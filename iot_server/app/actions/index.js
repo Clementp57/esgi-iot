@@ -3,6 +3,5 @@
 module.exports = function(app) {
 	app.actions = {
 		presences : require('./presences')(app)
-
 	};
 };
