@@ -8,6 +8,7 @@
 4. [Temps écoulés](#affichage-du-temps-écoulé-depuis-le-début-du-programme-sur-demande)
 5. [Processing](#processing)
 6. [7 segments](#7-segments)
+7. [PROJET](#projet)
 
 ## Installation
 
@@ -181,7 +182,7 @@ Voir la vidéo morse.mov dans le dossier Vidéos
 | Commande      | Parametre X   |  Reponse   |  But                        |
 | ------------- | ------------- | ---------- | --------------------------- |
 | AT+NAME=X     | nom du device | OK         | Définir le nom du device    |
-| AT+PSWD       | password      | OK         | Définir le mdp d'appairage  |
+| AT+PSWD=X     | password      | OK         | Définir le mdp d'appairage  |
 | AT+ADDR?      | aucun         | Adresse mac| Récupérer l'addresse MAC    |
 | AT+RESET      | aucun         | OK         | Reset le HC-05              |
 
@@ -199,3 +200,9 @@ Voir la vidéo morse.mov dans le dossier Vidéos
 ![alt text](./Images/branchement_presence.jpeg "branchement présence")
 
 #### Application mobile
+
+#### Difficulté rencontrés
+
+* Pour faire le setup du HC-05, il faut passer par le Serial3 par ex
+* Pour envoyer des données en bluetooth, utiliser le SoftwareSerial avec un println
+* Pour lire les données côté script python, récupérer le port en faisant > ls -lart /dev puis > serial.Serial(port)
