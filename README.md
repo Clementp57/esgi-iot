@@ -154,8 +154,48 @@ Voir la vidéo morse.mov dans le dossier Vidéos
 
 ### Projet
 
-### Installation
+#### Installation
 
 * Python
-* Pybluez
-* PyOBJC
+* Mongolab
+* Bluetooth (module HC-05)
+
+#### But de l'objet
+
+* Compter le nombre de passage dans une encadrure de porte par exemple
+
+
+#### Conception
+
+* Test des ultrasons, du capteur de présence
+* Finalement, nous avons choisi le capteur IR car c'est celui qui offre la plus grande précison
+* Utilisation du HC-05 pour communiquer en bluetooth avec le PC
+
+#### Appairage bluetooth et Ping
+
+* On connecte le module sur le Serial 3
+* On passe le HC-05 en mode AT en appuyant sur le bouton prévu pendant le branchement au courant
+* On set le baud rate a celui prévu par le HC-05 (38400)
+* On envoie une série de commande AT au module pour le configurer
+
+| Commande      | Parametre X   |  Reponse   |  But                        |
+| ------------- | ------------- | ---------- | --------------------------- |
+| AT+NAME=X     | nom du device | OK         | Définir le nom du device    |
+| AT+PSWD       | password      | OK         | Définir le mdp d'appairage  |
+| AT+ADDR?      | aucun         | Adresse mac| Récupérer l'addresse MAC    |
+| AT+RESET      | aucun         | OK         | Reset le HC-05              |
+
+#### Fonctionnement
+
+* On récupère sur l'arduino, toute les 100ms la valeur du capteur IR
+* Si la valeur indique une présence on incrémente un compteur
+* Toute les 5 secondes, on communique la valeur du compteur en bluetooth au script python, et on reset le compteur
+* Le script python lis la valeur sur le serial bluetooth, puis envoie une requete CURL en post sur le mongolab
+* Les applications mobiles récupèrent les valeurs sur le mongolab et les affichents sous la forme d'un graphique
+
+
+#### Montage
+
+![alt text](./Images/branchement_presence.jpeg "branchement présence")
+
+#### Application mobile

@@ -11,37 +11,55 @@ int i=0;
 
 int count=0;
 int isPresent=0;
+unsigned long elapsed_time=0;
 
 char recv_str[100];
 
 SoftwareSerial serial_connection(11, 10);
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(9600);
   serial_connection.begin(9600);
 
-  //serial_connection.println("Ready");
-  //if(setupBlueToothConnection() != 0) while(1); // Setup bluetooth one time
+  // Setup bluetooth one time and ping python server
+  //if(setupBlueToothConnection() != 0) while(1); 
+  // ping();
+  
   pinMode(ledPin, OUTPUT);
   pinMode(irPin, INPUT);  
 }
 
 void loop() {
   // Uncomment to read IR value
-//  int irValue = digitalRead(irPin);
-//
-//  if(irValue == 0 && isPresent == 0) {
-//    count++;
-//    isPresent = 1;
-//    Serial.println(count);
-//  } 
-//
-//  if(irValue == 1 && isPresent == 1) {
-//    isPresent = 0;
-//  }
+  int irValue = digitalRead(irPin);
 
-  byte byte_count=serial_connection.available();//This gets the number of bytes that were sent by the python script
+  if(irValue == 0 && isPresent == 0) {
+    count++;
+    isPresent = 1;
+  } 
+
+  if(irValue == 1 && isPresent == 1) {
+    isPresent = 0;
+  }
+
+  if(millis()-elapsed_time>5000) {
+    // Send count to server and reset count
+    Serial.print("Count: ");
+    Serial.println(count);
+    Serial.println("Sending, and resetting");
+    
+    serial_connection.println(String(count) + "\0");
+    
+    count=0;
+    elapsed_time=millis();
+  }
+  
+  delay(100); //Pause for a moment   
+}
+
+int ping() 
+{
+   byte byte_count=serial_connection.available();//This gets the number of bytes that were sent by the python script
   if(byte_count)//If there are any bytes then deal with them
   {
     Serial.println("Incoming Data");//Signal to the monitor that something is happening
@@ -49,7 +67,7 @@ void loop() {
     int remaining_bytes=0;//Initialize the bytes that we may have to burn off to prevent a buffer overrun
     if(first_bytes>=BUFFER_SIZE-1)//If the incoming byte count is more than our buffer...
     {
-      remaining_bytes=byte_count-(BUFFER_SIZE-1);//Reduce the bytes that we plan on handleing to below the buffer size
+      remaining_bytes =byte_count-(BUFFER_SIZE-1);//Reduce the bytes that we plan on handleing to below the buffer size
     }
     
     for(i=0;i<first_bytes;i++)//Handle the number of incoming bytes
@@ -67,22 +85,7 @@ void loop() {
     serial_connection.println("Hello from Blue "+String(count));//Then send an incrmented string back to the python script
     count++;//Increment the line counter
   }
-  delay(100);//Pause for a moment 
-
-
-
-
-  
-//  if (Serial3.available())
-//    Serial.println(Serial3.read());
-// 
-//  if (Serial.available())
-//    Serial3.write(Serial.read());
-  
-  
-//  delay(150);
 }
-
 
 // send command to Bluetooth and return if there is a response
 int sendBlueToothCommand(char command[])
@@ -170,9 +173,6 @@ int setupBlueToothConnection()
 
     // Get mac address
     Serial.println(sendBlueToothCommand("AT+ADDR?\r\n"));
-
-    // Set auto connect true 
-    Serial.println(sendBlueToothCommand("AT+STAUTO=1?\r\n"));
 
     Serial.print("AT+RESET : ");
     Serial.println(sendBlueToothCommand("AT+RESET\r\n"));
