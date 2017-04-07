@@ -26,8 +26,11 @@ import org.json.JSONObject;
 public class ServerHandler {
 
     private final String TAG = getClass().getSimpleName();
-    // private static final String API_BASE_URL = "http://192.168.1.16:8888/"; // device
-    private static final String API_BASE_URL = "http://10.0.2.2:8080/"; // emulator
+
+ //   private static final String API_BASE_URL = "http://192.168.1.16:8080/"; // device WIFI
+    private static final String API_BASE_URL = "http://192.168.43.168:8080/"; // device 4G
+    // private static final String API_BASE_URL = "http://10.0.2.2:8080/"; // emulator
+
     private static final String SUB_CATEGORY_AUTHENTICATION = "presences/";
     private final Context CONTEXT;
     private final int ERROR_CODE_UNAVAILABLE_SERVER = 1;
@@ -37,7 +40,6 @@ public class ServerHandler {
     private RequestQueue requestQueue;
     private final int CONNECTION_RETRY_MAX = 3;
     private int connectionCount = 0;
-
 
     private ServerHandler(Context context) {
         this.CONTEXT = context;
